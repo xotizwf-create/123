@@ -1,0 +1,75 @@
+<div class="auth-modal-v2" id="authModal" aria-hidden="true">
+  <div class="auth-modal-v2__overlay" data-auth-close></div>
+  <div class="auth-modal-v2__content">
+    <button class="auth-modal-v2__close" data-auth-close aria-label="Закрыть">&times;</button>
+    <div class="auth-modal-v2__logo">П</div>
+    <h2>С возвращением</h2>
+    <p class="auth-subtitle">Введите данные для входа в систему</p>
+    
+    <form class="auth-form-v2" action="/app" method="GET">
+      <div class="auth-field">
+        <label for="loginEmail">ЛОГИН</label>
+        <div class="auth-input-wrapper">
+          <span class="auth-input-icon">📧</span>
+          <input type="email" id="loginEmail" name="email" placeholder="user@prostavki.com" required>
+        </div>
+      </div>
+      
+      <div class="auth-field">
+        <label for="loginPassword">ПАРОЛЬ</label>
+        <div class="auth-input-wrapper">
+          <span class="auth-input-icon">🔒</span>
+          <input type="password" id="loginPassword" name="password" placeholder="********" required>
+        </div>
+      </div>
+      
+      <div class="auth-links">
+        <a href="#" class="auth-link-forgot">Забыли пароль?</a>
+      </div>
+      
+      <button type="submit" class="auth-submit-v2">Войти в систему</button>
+      
+      <div class="auth-divider-v2">
+        <span>или</span>
+      </div>
+      
+      <button type="button" class="auth-telegram-v2">
+        <span class="tg-icon">✈️</span>
+        Войти через Telegram
+      </button>
+      
+      <div class="auth-footer-v2">
+        Нет аккаунта? <a href="#" class="auth-link-register">Зарегистрироваться</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('authModal');
+    const triggers = document.querySelectorAll('[data-auth-trigger]');
+    const closeBtns = document.querySelectorAll('[data-auth-close]');
+    
+    const openModal = () => {
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    };
+    
+    const closeModal = () => {
+      modal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    };
+    
+    triggers.forEach(btn => btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    }));
+    
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  });
+</script>
