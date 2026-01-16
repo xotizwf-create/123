@@ -3,85 +3,123 @@
   <div class="auth-modal-v2__content">
     <button class="auth-modal-v2__close" data-auth-close aria-label="Закрыть">&times;</button>
     
-    <!-- Вход (Login) -->
-    <div class="auth-view" id="authViewLogin" style="display: none;">
-      <div class="auth-modal-v2__logo">П</div>
-      <h2>С возвращением</h2>
-      <p class="auth-subtitle">Введите данные для входа в систему</p>
-      
-      <form class="auth-form-v2" action="/app" method="GET">
-        <div class="auth-field">
-          <label for="loginEmail">ЛОГИН</label>
-          <div class="auth-input-wrapper">
-            <span class="auth-input-icon">📧</span>
-            <input type="email" id="loginEmail" name="email" placeholder="user@prostavki.com" required>
+    <div class="auth-track-v2" id="authTrack">
+      <!-- Вход (Login) -->
+      <div class="auth-view" id="authViewLogin">
+        <div class="auth-modal-v2__logo">П</div>
+        <h2>С возвращением</h2>
+        <p class="auth-subtitle">Введите данные для входа в систему</p>
+        
+        <form class="auth-form-v2" id="loginForm">
+          <div class="auth-field">
+            <label for="loginEmail">ЛОГИН</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">📧</span>
+              <input type="email" id="loginEmail" name="email" placeholder="user@prostavki.com" required>
+            </div>
           </div>
-        </div>
-        
-        <div class="auth-field">
-          <label for="loginPassword">ПАРОЛЬ</label>
-          <div class="auth-input-wrapper">
-            <span class="auth-input-icon">🔒</span>
-            <input type="password" id="loginPassword" name="password" placeholder="********" required>
+          
+          <div class="auth-field">
+            <label for="loginPassword">ПАРОЛЬ</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">🔒</span>
+              <input type="password" id="loginPassword" name="password" placeholder="********" required>
+            </div>
           </div>
-        </div>
-        
-        <div class="auth-links">
-          <a href="#" class="auth-link-forgot">Забыли пароль?</a>
-        </div>
-        
-        <button type="submit" class="auth-submit-v2">Войти в систему</button>
-        
-        <div class="auth-divider-v2">
-          <span>или</span>
-        </div>
-        
-        <button type="button" class="auth-telegram-v2">
-          <div class="tg-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
+          
+          <div class="auth-links">
+            <a href="#" class="auth-link-forgot">Забыли пароль?</a>
           </div>
-          Войти через Telegram
-        </button>
+          
+          <button type="submit" class="auth-submit-v2" id="submitLogin">Войти в систему</button>
+          
+          <div class="auth-divider-v2">
+            <span>или</span>
+          </div>
+          
+          <button type="button" class="auth-telegram-v2">
+            <div class="tg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </div>
+            Войти через Telegram
+          </button>
+          
+          <div class="auth-footer-v2">
+            Нет аккаунта? <a href="#" class="auth-link-register" id="toRegister">Зарегистрироваться</a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Регистрация (Register) -->
+      <div class="auth-view" id="authViewRegister" style="display: none;">
+        <div class="auth-modal-v2__logo">П</div>
+        <h2>Создать аккаунт</h2>
+        <p class="auth-subtitle">Выберите удобный способ регистрации</p>
+        
+        <div class="auth-options-v2">
+          <button type="button" class="auth-btn-email-v2">
+            <span class="btn-icon-v2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                <path d="M4 4h16c1.1 0 2 0.9 2 2v12c0 1.1-0.9 2-2 2H4c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            Регистрация по Email
+          </button>
+          
+          <button type="button" class="auth-btn-telegram-v2">
+            <div class="tg-icon-white">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </div>
+            Через Telegram
+          </button>
+        </div>
         
         <div class="auth-footer-v2">
-          Нет аккаунта? <a href="#" class="auth-link-register" id="toRegister">Зарегистрироваться</a>
+          Уже есть аккаунт? <a href="#" class="auth-link-login" id="toLogin">Войти</a>
         </div>
-      </form>
-    </div>
+      </div>
 
-    <!-- Регистрация (Register) -->
-    <div class="auth-view" id="authViewRegister" style="display: none;">
-      <div class="auth-modal-v2__logo">П</div>
-      <h2>Создать аккаунт</h2>
-      <p class="auth-subtitle">Выберите удобный способ регистрации</p>
-      
-      <div class="auth-options-v2">
-        <button type="button" class="auth-btn-email-v2">
-          <span class="btn-icon-v2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+      <!-- Проверка безопасности (Verification) -->
+      <div class="auth-view" id="authViewVerification" style="display: none;">
+        <div class="otp-hero-v2">
+          <div class="otp-pulse"></div>
+          <div class="otp-icon-v2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
               <path d="M4 4h16c1.1 0 2 0.9 2 2v12c0 1.1-0.9 2-2 2H4c-1.1 0-2-0.9-2-2V6c0-1.1 0.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-          </span>
-          Регистрация по Email
-        </button>
-        
-        <button type="button" class="auth-btn-telegram-v2">
-          <div class="tg-icon-white">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
+            <div class="otp-success-badge">✓</div>
           </div>
-          Через Telegram
+        </div>
+        
+        <h2 class="verify-title">Проверка безопасности</h2>
+        <p class="auth-subtitle">Мы отправили 6-значный код подтверждения на <br><span id="displayEmail" style="color: white; font-weight: 700;">user@prostavki.com</span></p>
+        
+        <div class="otp-inputs-v2">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-field-v2">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-field-v2">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-field-v2">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-field-v2">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-field-v2">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-field-v2">
+        </div>
+        
+        <button type="button" class="auth-submit-v2" style="margin-top: 1.5rem;" onclick="window.location.href='/app'">Подтвердить вход</button>
+        
+        <div class="otp-timer-v2">
+          <span class="timer-icon">🕒</span> Отправить повторно через <span id="timerCount">00:59</span>
+        </div>
+        
+        <button type="button" class="btn-back-v2" id="backToLogin">
+          <span>←</span> Вернуться назад
         </button>
-      </div>
-      
-      <div class="auth-footer-v2">
-        Уже есть аккаунт? <a href="#" class="auth-link-login" id="toLogin">Войти</a>
       </div>
     </div>
   </div>
@@ -92,49 +130,80 @@
     const modal = document.getElementById('authModal');
     const triggers = document.querySelectorAll('[data-auth-trigger]');
     const closeBtns = document.querySelectorAll('[data-auth-close]');
-    const viewLogin = document.getElementById('authViewLogin');
-    const viewRegister = document.getElementById('authViewRegister');
-    const toRegister = document.getElementById('toRegister');
-    const toLogin = document.getElementById('toLogin');
+    const views = {
+      login: document.getElementById('authViewLogin'),
+      register: document.getElementById('authViewRegister'),
+      verify: document.getElementById('authViewVerification')
+    };
+    const loginForm = document.getElementById('loginForm');
+    const displayEmail = document.getElementById('displayEmail');
+    const timerCount = document.getElementById('timerCount');
+    const otpInputs = document.querySelectorAll('.otp-field-v2');
     
-    const showView = (viewName) => {
-      viewLogin.style.display = 'none';
-      viewRegister.style.display = 'none';
-      if (viewName === 'login') viewLogin.style.display = 'block';
-      if (viewName === 'register') viewRegister.style.display = 'block';
+    let timerInterval;
+
+    const startTimer = () => {
+      clearInterval(timerInterval);
+      let seconds = 59;
+      timerCount.textContent = `00:${seconds}`;
+      timerInterval = setInterval(() => {
+        seconds--;
+        timerCount.textContent = `00:${seconds < 10 ? '0' + seconds : seconds}`;
+        if (seconds <= 0) clearInterval(timerInterval);
+      }, 1000);
     };
 
-    const openModal = (initialView) => {
-      showView(initialView || 'login');
-      modal.classList.add('is-active');
-      document.body.style.overflow = 'hidden';
+    const showView = (viewName) => {
+      Object.values(views).forEach(v => {
+        v.style.display = 'none';
+        v.classList.remove('view-enter');
+      });
+      const targetView = views[viewName];
+      targetView.style.display = 'block';
+      
+      if (viewName === 'verify') {
+        targetView.classList.add('view-enter');
+        startTimer();
+        otpInputs[0].focus();
+      }
     };
-    
-    const closeModal = () => {
-      modal.classList.remove('is-active');
-      document.body.style.overflow = '';
-    };
-    
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      displayEmail.textContent = email;
+      
+      const submitBtn = document.getElementById('submitLogin');
+      submitBtn.style.opacity = '0.7';
+      submitBtn.textContent = 'Обработка...';
+      
+      setTimeout(() => {
+        submitBtn.style.opacity = '1';
+        submitBtn.textContent = 'Войти в систему';
+        showView('verify');
+      }, 500);
+    });
+
+    document.getElementById('toRegister').onclick = (e) => { e.preventDefault(); showView('register'); };
+    document.getElementById('toLogin').onclick = (e) => { e.preventDefault(); showView('login'); };
+    document.getElementById('backToLogin').onclick = (e) => { e.preventDefault(); showView('login'); };
+
     triggers.forEach(btn => btn.addEventListener('click', (e) => {
       e.preventDefault();
       const view = btn.getAttribute('data-auth-trigger');
-      openModal(view === 'register' ? 'register' : 'login');
+      modal.classList.add('is-active');
+      showView(view === 'register' ? 'register' : 'login');
     }));
     
-    toRegister.addEventListener('click', (e) => {
-      e.preventDefault();
-      showView('register');
-    });
+    closeBtns.forEach(btn => btn.addEventListener('click', () => modal.classList.remove('is-active')));
 
-    toLogin.addEventListener('click', (e) => {
-      e.preventDefault();
-      showView('login');
-    });
-
-    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
-    
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+    otpInputs.forEach((input, idx) => {
+      input.addEventListener('input', (e) => {
+        if (e.target.value && otpInputs[idx + 1]) otpInputs[idx + 1].focus();
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !e.target.value && otpInputs[idx - 1]) otpInputs[idx - 1].focus();
+      });
     });
   });
 </script>
