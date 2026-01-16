@@ -11,8 +11,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}?v=20260119" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_modal.css') }}?v=20260119" />
-    <script defer src="{{ url_for('static', filename='js/auth.js') }}?v=20260119"></script>
   </head>
   <body class="landing">
     <div class="noise"></div>
@@ -29,8 +27,7 @@
           <a href="#contact">Контакты</a>
         </nav>
         <div class="nav-actions">
-          <button class="ghost-btn" data-auth-trigger="login">Войти</button>
-          <button class="pill-btn" data-auth-trigger="register">Начать работу</button>
+          <a class="pill-btn" href="/app">Войти в приложение</a>
         </div>
       </div>
     </header>
@@ -49,10 +46,9 @@
             складского учета и логистики в едином премиальном интерфейсе.
           </p>
           <div class="cta">
-            <button class="primary-btn" data-auth-trigger="register">
-              Подключиться <span class="btn-arrow">→</span>
-            </button>
-            <button class="outline-btn" data-auth-trigger="register">Демо-доступ</button>
+            <a class="primary-btn" href="/app">
+              Войти в систему <span class="btn-arrow">→</span>
+            </a>
           </div>
           <div class="trust">
             <span>ДОВЕРЯЮТ:</span>
@@ -118,7 +114,6 @@
       {% endif %}
     {% endwith %}
 
-    {% include "auth/modal.html" %}
     <script>
       if (new URLSearchParams(window.location.search).get("debug") === "1") {
         document.body.classList.add("debug-outline");
