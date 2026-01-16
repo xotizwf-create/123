@@ -131,20 +131,29 @@ body.landing-premium {
 }
 
 .nav-login {
-  text-decoration: none;
+  background: none;
+  border: none;
   color: var(--white);
   font-size: 0.9rem;
   font-weight: 500;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  transition: opacity 0.2s;
+}
+
+.nav-login:hover {
+  opacity: 0.8;
 }
 
 .nav-start {
-  text-decoration: none;
-  color: var(--deep-black);
   background: var(--white);
-  padding: 0.6rem 1.2rem;
+  border: none;
+  color: var(--deep-black);
+  padding: 0.6rem 1.5rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.9rem;
+  cursor: pointer;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
 }
