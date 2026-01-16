@@ -10,15 +10,20 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}?v=20260119" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}?v={{ range(1000, 9999) | random }}" />
   </head>
-  <body class="landing">
+  <body class="landing-premium">
+    <!-- Ambient Background Blobs -->
+    <div class="blob blob-indigo"></div>
+    <div class="blob blob-violet"></div>
+    
     <div class="noise"></div>
-    <header class="nav">
+    
+    <header class="nav-premium">
       <div class="container nav-inner">
         <div class="logo">
-          <span class="logo-mark">П</span>
-          <span>ПростыеПоставки</span>
+          <div class="logo-box">П</div>
+          <span class="logo-text">Простые<span class="logo-suffix">Поставки</span></span>
         </div>
         <nav class="menu">
           <a href="#features">Решения</a>
@@ -27,31 +32,39 @@
           <a href="#contact">Контакты</a>
         </nav>
         <div class="nav-actions">
-          <a class="pill-btn" href="/app">Войти в приложение</a>
+          <a class="nav-login" href="/app">Войти</a>
+          <a class="nav-start" href="/app">Начать работу</a>
         </div>
       </div>
     </header>
 
-    <main class="hero">
+    <main class="hero-premium">
       <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">ЭКОСИСТЕМА СНАБЖЕНИЯ 2.0</p>
-          <h1>
+        <div class="hero-content">
+          <div class="badge-premium">
+            <span class="badge-dot"></span>
+            Экосистема снабжения 2.0
+          </div>
+          
+          <h1 class="hero-title">
             Интеллект<br />
-            <span class="accent">в каждой</span><br />
-            поставке
+            <span class="hero-title-accent">в каждой поставке</span>
           </h1>
-          <p class="lead">
+          
+          <p class="hero-description">
             Комплексное решение для управления медицинским снабжением. Автоматизация контрактов,
             складского учета и логистики в едином премиальном интерфейсе.
           </p>
-          <div class="cta">
-            <a class="primary-btn" href="/app">
-              Войти в систему <span class="btn-arrow">→</span>
+          
+          <div class="hero-cta">
+            <a class="btn-primary" href="/app">
+              Подключиться <span class="btn-icon">→</span>
             </a>
+            <a class="btn-secondary" href="/app">Демо-доступ</a>
           </div>
-          <div class="trust">
-            <span>ДОВЕРЯЮТ:</span>
+          
+          <div class="hero-trust">
+            <span class="trust-label">ДОВЕРЯЮТ:</span>
             <div class="trust-logos">
               <div class="trust-logo"></div>
               <div class="trust-logo"></div>
@@ -59,44 +72,62 @@
             </div>
           </div>
         </div>
+        
         <div class="hero-visual">
-          <div class="mock-card">
-            <div class="mock-header">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <div class="mock-search"></div>
+          <div class="product-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dots">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+              </div>
+              <div class="mockup-address"></div>
             </div>
-            <div class="mock-grid">
-              <div class="mock-cell"></div>
-              <div class="mock-cell"></div>
-              <div class="mock-cell wide"></div>
-              <div class="mock-cell"></div>
-              <div class="mock-cell"></div>
+            <div class="mockup-body">
+              <div class="mockup-grid">
+                <div class="mockup-card card-top-left"></div>
+                <div class="mockup-card card-top-right"></div>
+                <div class="mockup-card card-middle"></div>
+                <div class="mockup-card card-bottom">
+                  <div class="mockup-icon-box">📦</div>
+                </div>
+              </div>
             </div>
-            <div class="mock-badge">✓</div>
+            
+            <!-- Floating Widgets -->
+            <div class="floating-widget widget-safety">
+              <div class="widget-icon">🛡️</div>
+              <span>Безопасность</span>
+            </div>
+            <div class="floating-widget widget-analytics">
+              <div class="widget-icon">📊</div>
+              <span>Аналитика</span>
+            </div>
           </div>
         </div>
       </div>
     </main>
 
-    <div class="divider"></div>
-    <section id="features" class="features">
-      <div class="container features-inner">
-        <div class="section-head">
+    <section class="features-premium">
+      <div class="container">
+        <div class="features-header">
           <h2>Полный контроль над процессами</h2>
           <p>Единая платформа для взаимодействия заказчиков, поставщиков и логистических служб.</p>
         </div>
-        <div class="feature-grid">
+        
+        <div class="features-grid">
           <div class="feature-card">
+            <div class="feature-icon">🌐</div>
             <h3>Глобальная сеть</h3>
             <p>Управление поставками из любой точки мира с полной прозрачностью.</p>
           </div>
           <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
             <h3>Безопасность</h3>
             <p>Защищенный документооборот и шифрование данных по стандартам отрасли.</p>
           </div>
           <div class="feature-card">
+            <div class="feature-icon">📦</div>
             <h3>Умный склад</h3>
             <p>Автоматический учет остатков и прогнозирование дефицита.</p>
           </div>
@@ -113,11 +144,5 @@
         </div>
       {% endif %}
     {% endwith %}
-
-    <script>
-      if (new URLSearchParams(window.location.search).get("debug") === "1") {
-        document.body.classList.add("debug-outline");
-      }
-    </script>
   </body>
 </html>
