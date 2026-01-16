@@ -791,13 +791,20 @@ body.landing-premium {
   color: white;
 }
 
-.auth-link-register {
+.auth-footer-v2 {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--slate-400);
+  text-align: center;
+}
+
+.auth-link-register, .auth-link-login {
   color: var(--white);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   margin-left: 0.25rem;
 }
 
-.auth-link-register:hover {
+.auth-link-register:hover, .auth-link-login:hover {
   text-decoration: underline;
 }
