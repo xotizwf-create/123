@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ПростыеПоставки — платформа снабжения</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}?v=20260119" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_modal.css') }}?v=20260119" />
+    <script defer src="{{ url_for('static', filename='js/auth.js') }}?v=20260119"></script>
+  </head>
+  <body class="landing">
+    <div class="noise"></div>
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="logo">
+          <span class="logo-mark">П</span>
+          <span>ПростыеПоставки</span>
+        </div>
+        <nav class="menu">
+          <a href="#features">Решения</a>
+          <a href="#equipment">Оборудование</a>
+          <a href="#cases">Кейсы</a>
+          <a href="#contact">Контакты</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="ghost-btn" data-auth-trigger="login">Войти</button>
+          <button class="pill-btn" data-auth-trigger="register">Начать работу</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">ЭКОСИСТЕМА СНАБЖЕНИЯ 2.0</p>
+          <h1>
+            Интеллект<br />
+            <span class="accent">в каждой</span><br />
+            поставке
+          </h1>
+          <p class="lead">
+            Комплексное решение для управления медицинским снабжением. Автоматизация контрактов,
+            складского учета и логистики в едином премиальном интерфейсе.
+          </p>
+          <div class="cta">
+            <button class="primary-btn" data-auth-trigger="register">
+              Подключиться <span class="btn-arrow">→</span>
+            </button>
+            <button class="outline-btn" data-auth-trigger="register">Демо-доступ</button>
+          </div>
+          <div class="trust">
+            <span>ДОВЕРЯЮТ:</span>
+            <div class="trust-logos">
+              <div class="trust-logo"></div>
+              <div class="trust-logo"></div>
+              <div class="trust-logo"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="mock-card">
+            <div class="mock-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <div class="mock-search"></div>
+            </div>
+            <div class="mock-grid">
+              <div class="mock-cell"></div>
+              <div class="mock-cell"></div>
+              <div class="mock-cell wide"></div>
+              <div class="mock-cell"></div>
+              <div class="mock-cell"></div>
+            </div>
+            <div class="mock-badge">✓</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="divider"></div>
+    <section id="features" class="features">
+      <div class="container features-inner">
+        <div class="section-head">
+          <h2>Полный контроль над процессами</h2>
+          <p>Единая платформа для взаимодействия заказчиков, поставщиков и логистических служб.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Глобальная сеть</h3>
+            <p>Управление поставками из любой точки мира с полной прозрачностью.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Безопасность</h3>
+            <p>Защищенный документооборот и шифрование данных по стандартам отрасли.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Умный склад</h3>
+            <p>Автоматический учет остатков и прогнозирование дефицита.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% include "auth/modal.html" %}
+    <script>
+      if (new URLSearchParams(window.location.search).get("debug") === "1") {
+        document.body.classList.add("debug-outline");
+      }
+    </script>
+  </body>
+</html>
