@@ -256,35 +256,50 @@ def create_app() -> Flask:
 
     @app.route("/")
     def landing():
+        # Auto-login the first user for development/demo purposes
+        db_session = SessionLocal()
+        try:
+            user = db_session.execute(select(User)).scalars().first()
+            if user:
+                login_user(user)
+                return redirect(url_for("app_index"))
+        finally:
+            db_session.close()
         return render_template("public/landing.html")
 
     @app.post("/api/appBackend")
     def app_backend():
-        if not current_user.is_authenticated:
-            return jsonify({"success": False, "error": "unauthorized"}), 401
-        data = request.get_json(silent=True) or {}
-        module = data.get("module")
-        action = data.get("action")
-        payload = data.get("payload") or {}
-        payload["userId"] = current_user.id
-
-        handlers = {
-            "contracts": contracts,
-            "warehouse": warehouse,
-            "pricelist": pricelist,
-            "dashboard": dashboard,
-            "commercials": commercials,
-            "archive": archive,
-        }
-
-        handler = handlers.get(module)
-        if not handler:
-            return jsonify({"success": False, "error": f"Unknown module: {module}"})
-
+        # Temporary bypass for development
+        db_session = SessionLocal()
         try:
+            user = db_session.execute(select(User)).scalars().first()
+            if not user:
+                return jsonify({"success": False, "error": "No user found in database"}), 404
+            
+            data = request.get_json(silent=True) or {}
+            module = data.get("module")
+            action = data.get("action")
+            payload = data.get("payload") or {}
+            payload["userId"] = user.id
+            
+            handlers = {
+                "contracts": contracts,
+                "warehouse": warehouse,
+                "pricelist": pricelist,
+                "dashboard": dashboard,
+                "commercials": commercials,
+                "archive": archive,
+            }
+
+            handler = handlers.get(module)
+            if not handler:
+                return jsonify({"success": False, "error": f"Unknown module: {module}"})
+
             return jsonify(handler.handle(action, payload))
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             return jsonify({"success": False, "error": str(exc)})
+        finally:
+            db_session.close()
 
     @app.route("/drive/<file_id>")
     def download_drive_file(file_id: str):
@@ -308,8 +323,14 @@ def create_app() -> Flask:
         return send_from_directory(archive_dir, filename, as_attachment=True)
 
     @app.route("/app")
-    @login_required
     def app_index():
+        db_session = SessionLocal()
+        try:
+            user = db_session.execute(select(User)).scalars().first()
+            if user:
+                login_user(user)
+        finally:
+            db_session.close()
         return render_template("index.html")
 
     @app.route("/logout")
