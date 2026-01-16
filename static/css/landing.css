@@ -735,11 +735,11 @@ body.landing-premium {
 .auth-btn-email-v2 {
   width: 100%;
   background: var(--white);
-  color: var(--deep-black);
+  color: #0f111a;
   border: none;
   border-radius: 12px;
   padding: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
@@ -749,9 +749,11 @@ body.landing-premium {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.auth-btn-email-v2:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+.auth-btn-email-v2 .btn-icon-v2 {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  color: #0f111a;
 }
 
 .auth-btn-telegram-v2 {
@@ -761,7 +763,7 @@ body.landing-premium {
   border: none;
   border-radius: 12px;
   padding: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
@@ -771,20 +773,10 @@ body.landing-premium {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.auth-btn-telegram-v2:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-}
-
-.btn-icon-v2 {
-  font-size: 1.2rem;
-}
-
 .tg-icon-white {
   width: 24px;
   height: 24px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
