@@ -256,15 +256,6 @@ def create_app() -> Flask:
 
     @app.route("/")
     def landing():
-        # Auto-login the first user for development/demo purposes
-        db_session = SessionLocal()
-        try:
-            user = db_session.execute(select(User)).scalars().first()
-            if user:
-                login_user(user)
-                return redirect(url_for("app_index"))
-        finally:
-            db_session.close()
         return render_template("public/landing.html")
 
     @app.post("/api/appBackend")
